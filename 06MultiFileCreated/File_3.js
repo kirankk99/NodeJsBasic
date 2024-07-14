@@ -1,0 +1,1 @@
+//Sample text added in the file3 out of 6
