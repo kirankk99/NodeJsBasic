@@ -2,10 +2,10 @@ let a = 10;
 let b = 20;
 
 // console.log(a + b);  // this is the synchronous method
-// Normally js code exicute in the tob down manner or like one by one line.
-//But in some cases , functions need more time to exicute but other functions doesn't . 
-// to avoid from blocking nature of other functions exicution async is introduced which help
-// in other priority fun or less time required functions exicution and return the output of the
+// Normally js code execute in the tob down manner or like one by one line.
+// But in some cases , functions need more time to execute but other functions doesn't . 
+// to avoid from blocking nature of other functions execution async is introduced which help
+// in other priority fun or less time required functions execution and return the output of the
 // async function after its process complete.
 // to make it asynchronous method
 
