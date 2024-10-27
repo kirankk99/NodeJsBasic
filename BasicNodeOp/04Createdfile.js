@@ -1,1 +1,0 @@
-{kiran, 25,Bengaluru}
