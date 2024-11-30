@@ -1,14 +1,13 @@
 // Create, Read, Update, Delete operations using the fs lib of the node js
 
 // 1 create the file
-
 const fs = require("fs");
 const path = require("path");
 const DName = path.join(__dirname, "08CreatedByCRUD");
 const currentFile = path.join(__filename, "");
-const filePath = DName + "/FileCreatedByCRUD.js";
-console.log(DName, filePath);
 const ch = process.argv;
+const filePath = DName + "/" + ch[3];
+console.log(DName, filePath);
 switch (ch[2]) {
   case "Create":
     // Create the file inside of the new Dir
@@ -45,38 +44,34 @@ switch (ch[2]) {
       }
     });
 
-    case "Read":
-        if(fs.existsSync(filePath)){
-
-            fs.readFile(filePath,'utf8',(err, file)=>{
-                try{
-                    console.log(file)
-                }
-                catch{
-                    console.log("error")
-                }
-            })
+  case "Read":
+    if (fs.existsSync(filePath)) {
+      fs.readFile(filePath, "utf8", (err, file) => {
+        try {
+          console.log(file);
+        } catch {
+          console.log("error");
         }
-        else{
-            console.log("file not exists")
+      });
+    } else {
+      console.log("file not exists");
+    }
+    break;
+  case "Rename":
+    if (fs.existsSync(filePath)) {
+      fs.rename(filePath, DName + "/" + ch[3], (err, res) => {
+        try {
+          console.log("File Renamed");
+        } catch {
+          console.log("Error");
         }
-        break;
-        case "Rename":
-            if(fs.existsSync(filePath)){
-
-                fs.rename(filePath, DName+"/CreatedFileRenamed1.js",(err, res)=>{
-                    try{
-                        
-                      console.log('File Renamed')
-    
-                    }
-                    catch{
-                        console.log("Error")
-                    }
-                })
-            }else{
-                console.log("File not exists")
-            }
-            default: console.log("Enter correct argument among ['Create' , 'Delete' , 'Rename', 'Append', 'Read']");
-            break;
+      });
+    } else {
+      console.log("File not exists");
+    }
+  default:
+    console.log(
+      "Enter correct argument among ['Create' , 'Delete' , 'Rename', 'Append', 'Read']"
+    );
+    break;
 }
