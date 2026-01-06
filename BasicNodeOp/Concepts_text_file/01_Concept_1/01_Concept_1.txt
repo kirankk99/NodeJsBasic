@@ -1,0 +1,124 @@
+What is Node.js & How It Works
+
+1️⃣ Concept Explanation
+Node.js is a JavaScript runtime that allows you to run JS code outside the browser, mainly on the server.
+👉 Node.js uses:
+
+
+Single thread
+
+
+Event-driven
+
+
+Non-blocking I/O
+
+
+This means:
+
+
+One thread handles many requests
+
+
+Long operations don’t block execution
+
+
+Uses event loop internally
+
+
+
+2️⃣ Key Points to Remember
+
+
+Node.js ≠ Framework ❌ (It’s a runtime)
+
+
+Built on Chrome V8 Engine
+
+
+Uses asynchronous programming
+
+
+Best for I/O-heavy apps (APIs, real-time apps)
+
+
+Not ideal for heavy CPU tasks
+
+
+📌 As a working professional, this is important for system design clarity
+
+3️⃣ Basic Example to Try (Execution)
+Create a file: app.js
+console.log("Start");
+
+setTimeout(() => {
+  console.log("Inside Timeout");
+}, 2000);
+
+console.log("End");
+
+Run:
+node app.js
+
+Output:
+Start
+End
+Inside Timeout
+
+🔍 Why?
+
+
+setTimeout goes to event queue
+
+
+Main thread continues execution
+
+
+Event loop executes async code later
+
+
+
+4️⃣ How This Is Used in Real Projects
+In Express APIs:
+
+
+DB calls
+
+
+API calls
+
+
+File uploads
+
+
+All happen asynchronously, so:
+
+
+One server can handle 1000s of users
+
+
+No request waits for another
+
+
+Example:
+app.get('/users', async (req, res) => {
+  const users = await getUsersFromDB();
+  res.json(users);
+});
+
+
+5️⃣ Interview Tricky Questions (Very Important)
+Q1️⃣ Is Node.js multi-threaded?
+✅ No (Single-threaded, but uses background threads via libuv)
+
+Q2️⃣ Why is Node.js fast?
+✅ Non-blocking I/O + Event loop + V8 engine
+
+Q3️⃣ Can Node.js handle multiple users?
+✅ Yes, using async and event-driven architecture
+
+Q4️⃣ Is Node.js suitable for CPU-intensive tasks?
+❌ No (Use worker threads or other backend like Java)
+
+Q5️⃣ What happens if one request fails?
+✅ Other requests continue (non-blocking nature)
