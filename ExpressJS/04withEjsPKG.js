@@ -12,11 +12,13 @@ app.get('',(rq, rs)=>{
 //set the ejs pkg path to app
 
 app.set('view engine', 'ejs');
+
 app.get('/profile',(_,res)=>{
     const user={
         name:"Kiran",
         mail:'kiran@gmail.com',
-        country:'India'
+        country:'India',
+        Skills:['java','C++', 'C','Python','C#', 'js']
     }
     res.render('profile',{user})
 })

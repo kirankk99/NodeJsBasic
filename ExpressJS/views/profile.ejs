@@ -20,5 +20,8 @@
     <div class="nameExm"><h2>Name :</h2><h2 class="h2Cls"><%= user.name %></h2></div>
     <div class="nameExm"><h2>Email :</h2><h2 class="h2Cls"><%= user.mail %></h2></div>
 <div class="nameExm"><h2>Country :</h2><h2 class="h2Cls"><%= user.country %></h2></div>
+<div class="nameExm"><h2>Skills known :</h2>
+    <ul><% user.Skills.forEach((f)=>{ %><li><h3 class="h2Cls"><%=f%></h3></li> <%}) %></ul>
+</div>
 </body>
 </html>
