@@ -1,24 +1,17 @@
 const fs=require('fs');
-// it return and handle the try and catch or err from the node
-// This is the sync menthod provide by the node and it is blocking function
-const fileData=fs.readFileSync('./BasicNodeOp/Concepts_text_file/03_Concept_3/test.txt','utf-8');
-console.log(fileData);
-
-// const fileData1=fs.readFile('./BasicNodeOp/Concepts_text_file/03_Concept_3/test.txt','utf-8');
-//# the above one give the error 
-// node:internal/errors:540
-//       throw error;
-//       ^
-// TypeError [ERR_INVALID_ARG_TYPE]: The "cb" argument must be of type function. Received type string ('utf-8')
 
 // -------------- use asyc methodology to handle these
-fs.readFile('./BasicNodeOp/Concepts_text_file/03_Concept_3/test.txt','utf-8',(err, res)=>{
+fs.readFile('test.txt','utf-8',(err, res)=>{
 if(err){
     console.log("Error catched", err);
 }else{
-    console.log("result of the file", res);
+    console.log("result of the file \n", res);
 }
 });
+// it return and handle the try and catch or err from the node
+// This is the sync menthod provide by the node and it is blocking function
+const fileData=fs.readFileSync('test.txt','utf-8');
+console.log("fetched quick after read \n",fileData);
 
 // The above function will not return anything and it should be handled with passing a call back functions
 // ------------- Get the out like this in console

@@ -1,42 +1,33 @@
+import { unlink, access } from 'fs/promises';
+import { constants, writeFileSync, stat, statSync } from 'fs'; // Import everything here
 
+// Note: We don't need "const fs = require('fs')" anymore.
+// If you want a 'fs' object, use: import * as fs from 'fs';
 
-const fs=require('fs');
+async function manageFile(filePath) {
+  try {
+    await access(filePath, constants.F_OK);
+    await unlink(filePath);
+    console.log('File deleted successfully.');
+  } catch (error) {
+    console.log('File not available.');
+  }
+}
 
-fs.writeFileSync('./BasicNodeOp/Concepts_text_file/03_Concept_3/FileToDelete.txt','Sample content added','utf-8');
+manageFile('./FileToDelete.txt');
 
+// Use the imported writeFileSync directly
+writeFileSync('./FileToDelete.txt', 'Sample content added', 'utf-8');
 console.log("File created");
 
-fs.stat('./BasicNodeOp/Concepts_text_file/03_Concept_3/FileToDelete.txt',(err, res)=>{
-    if(err){
-        console.log("Err while getting stats");
-    }
-    if(res){
-        console.log("Log generated sucessfully .... \n", res);
-        console.log(fs.statSync('./BasicNodeOp/Concepts_text_file/03_Concept_3/FileToDelete.txt').isFile());
-    }
+stat('FileToDelete.txt', (err, res) => {
+  if (err) {
+    console.log("Err while getting stats");
+  }
+  if (res) {
+    console.log("Log generated successfully .... \n", res);
+    console.log(statSync('FileToDelete.txt').isFile());
+  }
 });
-console.log("Completed")
 
-// output 
-// AzureAD+KiranKumar@KIRAN-K-D-L5420 MINGW64 /d/Tut (aru)
-// $ node BasicNodeOp/Concepts_text_file/03_Concept_3/03_GetStats.js 
-// File created
-// Completed
-// Log generated sucessfully ....
-//  Stats {
-//   dev: 1894713329,
-//   mode: 33206,
-//   nlink: 1,
-//   uid: 0,
-//   gid: 0,
-//   rdev: 0,
-//   blksize: 4096,
-//   ino: 7036874417900569,
-//   size: 20,
-//   blocks: 0,
-//   atimeMs: 1767712407598.618,
-//   mtimeMs: 1767712407598.618,
-//   ctimeMs: 1767712407598.618,
-//   birthtimeMs: 1767712278113.3877
-// }
-// true
+console.log("Completed");
