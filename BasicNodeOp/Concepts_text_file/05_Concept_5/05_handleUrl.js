@@ -9,10 +9,19 @@ const MyPageServer = http.createServer((req, res) => {
   fs.appendFile("log.txt", log, (errV, dataa) => {
     console.log(errV);
   });
-  if (req.url === "/" && req.method === "GET") {
+  const parsed_url = iurl.parse(req.url, true);
+  console.log(
+    "request made :",
+    parsed_url,
+    "\n pathname :",
+    parsed_url.pathname,
+  );
+
+  //   just printining the solution
+  if (parsed_url.pathname === "/" && req.method === "GET") {
     res.writeHead(200, { "Content-Type": "text/plain" });
-    res.end("Home Page");
-  } else if (req.url === "/about" && req.method === "GET") {
+    res.end(`hi ${parsed_url.query.userName}, This is Home Page`);
+  } else if (parsed_url.pathname == "/about" && req.method === "GET") {
     const aboutPage = path.join(__dirname, "05_aboutPage.html");
     fs.readFile(aboutPage, "utf-8", (err, data) => {
       if (err) {
@@ -30,5 +39,5 @@ const MyPageServer = http.createServer((req, res) => {
 });
 
 MyPageServer.listen(8880, (re, rs) => {
-  console.log("server started by kiran");
+  console.log("server started for url handler");
 });
