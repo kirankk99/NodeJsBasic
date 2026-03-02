@@ -1,14 +1,14 @@
-const fs = require("fs").promises; // useed to handle file system in app
-const path = require("path"); // used to access the file path
+const fs = require("fs").promises;
+const path = require("path");
 
-//
-const userFilePath = path.join(__dirname, "../data/users.json");
+const filePath = path.join(__dirname, "../data/users.json");
 
 async function readAllUsers() {
-  const data = await fs.readFile(userFilePath, "utf-8");
+  const data = await fs.readFile(filePath, "utf-8");
   return JSON.parse(data);
 }
-async function writeUsers() {
+
+async function writeUsers(users) {
   await fs.writeFile(filePath, JSON.stringify(users, null, 2));
 }
 
