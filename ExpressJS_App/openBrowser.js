@@ -1,10 +1,15 @@
-// --------------
 const fs = require("fs");
-const open = require("open");
 
-const flagFile = "./.browser-opened";
+(async () => {
+  const open = (await import("open")).default;
 
-if (!fs.existsSync(flagFile)) {
-  open("http://localhost:9000");
+  const flagFile = "./.browser-opened";
+
+  // if (!fs.existsSync(flagFile)) {
+  await open("http://localhost:3000");
+  console.log(flagFile);
   fs.writeFileSync(flagFile, "opened");
-}
+  // }
+
+  // console.log("--", flagFile);
+})();

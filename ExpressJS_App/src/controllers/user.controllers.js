@@ -1,8 +1,9 @@
 const { readAllUsers, writeUsers } = require("../services/user.services");
 const { createUserSchema } = require("../validators/user.validator");
 
-//
+//to avoide the try catch in every part and handle the catch for route to next() which redirect in express
 const asyncHandler = require("../utils/asyncHandler");
+//
 const ApiError = require("../utils/ApiError");
 //
 //
@@ -15,6 +16,7 @@ exports.getUserByHandler = asyncHandler(async (req, res) => {
   const users = await readAllUsers();
   const user = users.find((u) => u.id == req.params.id);
   if (!user) {
+    // created a sample api error module to construct error code
     throw new ApiError("User not found", 404);
   }
   res.json(user);
@@ -57,7 +59,7 @@ exports.getUserById = async (req, res) => {
     }
     //updated error handle fun, refere error.midleware.js to check
     if (!user) {
-      throw { status: 404, message: "User not found" };
+      throw { status: "error", statusCode: 404, message: "User not found" };
     }
 
     // alternative

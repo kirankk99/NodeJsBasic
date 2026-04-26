@@ -1,0 +1,54 @@
+{
+  "123": [
+    {
+      "id": 1762283283714,
+      "userId": "123",
+      "name": "kiran",
+      "email": "kiran@mail.com",
+      "startDate": "04/20/2026",
+      "endDate": "04/26/2026",
+      "type": "sick",
+      "numOfDays": 6
+    },
+    {
+      "id": 1777195160723,
+      "userId": "123",
+      "name": "swathi",
+      "email": "SwathiG@gmail.com",
+      "startDate": "20/05/2026",
+      "endDate": "22/05/2026",
+      "type": "Casual",
+      "numOfDays": 2
+    },
+    {
+      "id": 1777195289774,
+      "userId": "123",
+      "name": "swathi",
+      "email": "SwathiG@gmail.com",
+      "startDate": "20/05/2026",
+      "endDate": "22/05/2026",
+      "type": "Casual",
+      "numOfDays": 2
+    },
+    {
+      "id": 1777195293745,
+      "userId": "123",
+      "name": "swathi",
+      "email": "SwathiG@gmail.com",
+      "startDate": "20/05/2026",
+      "endDate": "22/05/2026",
+      "type": "Casual",
+      "numOfDays": 2
+    },
+    {
+      "id": 1777195295042,
+      "userId": "123",
+      "name": "swathi",
+      "email": "SwathiG@gmail.com",
+      "startDate": "20/05/2026",
+      "endDate": "22/05/2026",
+      "type": "Casual",
+      "numOfDays": 2
+    }
+  ]
+}

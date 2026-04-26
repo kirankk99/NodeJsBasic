@@ -11,8 +11,9 @@
     "joi": "^18.0.2"
   },
   "scripts": {
-    "start": "node openBrowser.js & npm run dev",
-    "dev": "nodemon ./src/app.js"
+    "dev": "nodemon src/app.js",
+    "serve": "browser-sync start --proxy \"http://localhost:3000\" --files \"src/**/*.*\"",
+    "start": "concurrently \"npm run dev\" \"npm run serve\""
   },
   "devDependencies": {
     "concurrently": "^9.2.1",
