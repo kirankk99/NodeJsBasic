@@ -1,4 +1,6 @@
 const { readAllUsers, writeUsers } = require("../services/user.services");
+const { createUserSchema } = require("../validators/user.validator");
+
 //
 const asyncHandler = require("../utils/asyncHandler");
 const ApiError = require("../utils/ApiError");
@@ -18,14 +20,16 @@ exports.getUserByHandler = asyncHandler(async (req, res) => {
   res.json(user);
 });
 
-exports.createUser = async (req, res) => {
+exports.createUser = async (req, res, next) => {
   try {
     const { error } = createUserSchema.validate(req.body);
     if (error) {
       throw { status: 401, message: error.details[0].message };
     }
+
     const users = await readAllUsers(req, res);
     console.log("body data passed", req?.body);
+
     const newUser = {
       id: Date.now(),
       name: req?.body?.name,
@@ -38,6 +42,7 @@ exports.createUser = async (req, res) => {
 
     res.status(201).json(newUser);
   } catch (err) {
+    console.warn("error", err);
     next(err);
   }
 };

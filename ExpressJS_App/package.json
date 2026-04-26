@@ -11,6 +11,11 @@
     "joi": "^18.0.2"
   },
   "scripts": {
-    "start": "node ./src/app.js"
+    "start": "node openBrowser.js & npm run dev",
+    "dev": "nodemon ./src/app.js"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "open": "^11.0.0"
   }
 }
