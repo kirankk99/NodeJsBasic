@@ -1,0 +1,136 @@
+Node.js Modules (require, module.exports)
+
+This is one of the most important Node.js concepts and used in every real project.
+
+1️⃣ Concept Explanation
+
+In Node.js, each file is a module.
+
+Modules help you:
+
+Split code into reusable parts
+
+Keep code clean and maintainable
+
+Avoid global scope pollution
+
+Node.js uses CommonJS module system by default.
+
+2️⃣ Key Points to Remember
+
+Every .js file is a separate module
+
+require() → imports a module
+
+module.exports → exposes data/functions
+
+Modules are cached after first load
+
+Paths:
+
+./ → local file
+
+No ./ → core or npm module
+
+3️⃣ Basic Example to Try
+Step 1: Create a module
+
+📄 math.js
+
+function add(a, b) {
+  return a + b;
+}
+
+function subtract(a, b) {
+  return a - b;
+}
+
+module.exports = {
+  add,
+  subtract
+};
+
+Step 2: Use the module
+
+📄 app.js
+
+const math = require('./math');
+
+console.log(math.add(10, 5));
+console.log(math.subtract(10, 5));
+
+
+Run:
+
+node app.js
+
+Output:
+15
+5
+
+4️⃣ How This Is Used in Real Projects
+
+In Express applications, modules are used for:
+
+controllers/
+routes/
+services/
+middlewares/
+utils/
+
+
+Example:
+
+// userService.js
+module.exports.getUsers = async () => {
+  return await User.find();
+};
+
+// userController.js
+const userService = require('./userService');
+
+exports.getUsers = async (req, res) => {
+  const users = await userService.getUsers();
+  res.json(users);
+};
+
+
+📌 This is clean architecture, which you already use as a professional.
+
+5️⃣ Interview Tricky Questions (Max 5)
+Q1️⃣ What happens if you require a module twice?
+
+✅ It is cached, loaded only once
+
+Q2️⃣ Difference between exports and module.exports?
+
+✅ exports is a reference to module.exports
+⚠️ Reassigning exports breaks the reference
+
+Q3️⃣ Can Node.js modules share variables?
+
+❌ No (Each module has its own scope)
+
+Q4️⃣ How does Node know where to find a module?
+
+✅ Resolution order:
+
+Core module
+
+node_modules
+
+Local path
+
+Q5️⃣ Can you export a function directly?
+
+✅ Yes
+
+module.exports = function () {}
+
+🛠 Mini Task (Must Do)
+
+Create logger.js
+
+Export a function that logs current date & message
+
+Import and use it in app.js

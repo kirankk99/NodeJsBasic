@@ -1,0 +1,134 @@
+✅ CONCEPT 3: Node.js Core Modules (fs, path, os)
+
+These are built-in modules → no installation needed.
+They are heavily used in real backend projects.
+
+1️⃣ Concept Explanation
+
+Node.js provides core modules to interact with:
+
+Files
+
+Directories
+
+Operating system
+
+System paths
+
+Most commonly used:
+
+fs → File System
+
+path → File & directory paths
+
+os → OS information
+
+2️⃣ Key Points to Remember
+
+Core modules come with Node.js
+
+No npm install required
+
+Prefer async methods over sync
+
+Use path instead of hardcoding paths (cross-platform)
+
+3️⃣ Basic Examples to Try
+📌 fs – File System Module
+Write to a file
+const fs = require('fs');
+
+fs.writeFile('test.txt', 'Hello Node.js', (err) => {
+  if (err) throw err;
+  console.log('File created');
+});
+
+Read a file
+fs.readFile('test.txt', 'utf-8', (err, data) => {
+  if (err) throw err;
+  console.log(data);
+});
+
+
+⚠️ Avoid:
+
+fs.readFileSync()
+
+
+(Blocks event loop)
+
+📌 path – Path Module
+const path = require('path');
+
+console.log(path.basename(__filename));
+console.log(path.extname(__filename));
+console.log(path.join(__dirname, 'files', 'test.txt'));
+
+📌 os – Operating System Module
+const os = require('os');
+
+console.log(os.platform());
+console.log(os.totalmem());
+console.log(os.freemem());
+
+4️⃣ Mini Project Usage (Real World)
+Example: Logging API requests to a file
+const fs = require('fs');
+const path = require('path');
+
+function logMessage(message) {
+  const logPath = path.join(__dirname, 'logs.txt');
+
+  fs.appendFile(logPath, message + '\n', () => {});
+}
+
+module.exports = logMessage;
+
+
+Used in Express:
+
+logMessage(`Request received at ${new Date()}`);
+
+
+📌 This pattern is used in:
+
+Audit logs
+
+Error logs
+
+Monitoring systems
+
+5️⃣ Interview Tricky Questions (Max 5)
+Q1️⃣ Why avoid fs.readFileSync in Node.js?
+
+✅ It blocks the event loop
+
+Q2️⃣ Difference between __dirname and process.cwd()?
+
+✅
+
+__dirname → current file location
+
+process.cwd() → where Node command is run
+
+Q3️⃣ Why use path.join() instead of /?
+
+✅ Works across Windows/Linux/Mac
+
+Q4️⃣ Are core modules faster than npm packages?
+
+✅ Yes (native & optimized)
+
+Q5️⃣ Can we delete files using fs?
+
+✅ Yes → fs.unlink()
+
+🛠 Mini Task (Must Do)
+
+Create notes.txt
+
+Write text using fs
+
+Read and log content
+
+Use path.join() properly
