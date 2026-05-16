@@ -22,6 +22,6 @@ app.use(errorHandler);
 app.listen(PORT, async () => {
   console.log(`Server running on http://localhost:${PORT}`);
 
-  const open = (await import("open")).default;
-  open(`http://localhost:${PORT}/users`);
+  // const open = (await import("open")).default;
+  // open(`http://localhost:${PORT}/users`);
 });
